@@ -13,12 +13,10 @@ def test_is_valid_email_true():
     # Assert
     assert result == True
 
-
 def test_is_valid_email_type_error():
     """Test that a non-string input raises TypeError."""
     with pytest.raises(TypeError):
         is_valid_email(12345)
-
 
 def test_is_valid_phone_true():
     """Test a well-formed phone number with dashes."""
@@ -31,7 +29,6 @@ def test_is_valid_phone_true():
     # Assert
     assert result == True
 
-
 def test_mask_email_basic():
     """Test masking a typical email address."""
     # Arrange
@@ -42,3 +39,18 @@ def test_mask_email_basic():
 
     # Assert
     assert result == "pr***@example.com"
+
+def test_normalize_phone():
+    """Test normalizing a phone number with dashes."""
+    # Arrange
+    phone = "555-123-4567"
+
+    # Act
+    result = normalize_phone(phone)
+
+    # Assert
+    assert result == "5551234567"
+
+def test_normalize_phone_invalid():
+    with pytest.raises(ValueError):
+        normalize_phone("123")
